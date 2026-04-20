@@ -128,7 +128,7 @@ const initialNodes: Node[] = [
   { id: "erik",      type: "person", position: { x: 455, y: 220 },
     data: { name: "Erik Rodrigues", role: "Especialista", dept: "Infra", color: INFRA_COLOR } },
   { id: "lucas",     type: "person", position: { x: 670, y: 220 },
-    data: { name: "Lucas Braide", role: "Product Manager", dept: "Gobeaute", color: GOBEAUTE_COLOR, isMe: true } },
+    data: { name: "Lucas Braide", role: "Product Manager", dept: "Gobeaute & Jump", color: GOBEAUTE_COLOR } },
   { id: "wellington",type: "person", position: { x: 895, y: 220 },
     data: { name: "Wellington Brito", role: "Líder de E-commerce", dept: "Gobeaute", color: GOBEAUTE_COLOR } },
   { id: "sep-bi",    type: "separator", position: { x: -400, y: 100 },

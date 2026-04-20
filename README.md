@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Onboarding Tech — GoGroup
 
-## Getting Started
+Plataforma de onboarding interativo para o time de tecnologia do GoGroup. Apresenta o ecossistema de marcas, stack técnica, organograma e ferramentas do dia a dia — com suporte a dois contextos de squad: **Gobeaute** e **Gocase**.
 
-First, run the development server:
+## Funcionalidades
+
+- **Seletor de contexto por squad** — alterna entre Gobeaute e Gocase nas seções de Stack, Organograma e Ferramentas
+- **Diagramas editáveis** — React Flow com persistência local (arrastar, zoom, editar nós, restaurar layout)
+- **Modo de edição** — edita textos, ferramentas e valores diretamente na interface
+- **SSO Google** — autenticação via NextAuth com restrição por domínio `@gocase.com.br`
+- **Portfolio de marcas** — Gocase, 7 marcas Gobeaute e 3 marcas Jump com cards detalhados
+- **Logos via logo.dev** — fallback automático para iniciais quando a logo não carrega
+
+## Stack
+
+- [Next.js 15](https://nextjs.org) (App Router)
+- [React Flow (@xyflow/react)](https://reactflow.dev)
+- [NextAuth.js](https://next-auth.js.org) — Google OAuth
+- TypeScript
+
+## Desenvolvimento
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Estrutura
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+app/                  # Rotas Next.js (page, layout, login, api/auth)
+components/
+  sections/           # Hero, Valores, Universos, Marcas, Organograma, Stack, Ferramentas, Equipe
+  Navbar.tsx
+  BrandSelector.tsx   # Seletor Gobeaute / Gocase (usado por Stack, Organograma, Ferramentas)
+context/
+  BrandContext.tsx    # Estado global do squad selecionado
+  EditModeContext.tsx # Estado global do modo de edição
+hooks/
+  usePersistedFlow.ts # Persistência de diagramas React Flow no localStorage
+  useEditableData.ts  # Persistência de dados editáveis no localStorage
+```
 
-## Learn More
+## Deploy
 
-To learn more about Next.js, take a look at the following resources:
+Hospedado na Vercel. Variáveis de ambiente necessárias:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+NEXTAUTH_SECRET=
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+NEXTAUTH_URL=
+```

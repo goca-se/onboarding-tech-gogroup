@@ -11,8 +11,8 @@ const gocase = {
   accentLight: "#fdecea",
   segment: "Acessórios Personalizados",
   tagline: "O maior e-commerce de acessórios personalizados do Brasil — do case ao mundo.",
-  desc: "Maior e-commerce de acessórios personalizados do Brasil. Opera em +130 países, com sede na Holanda e produção em Extrema (MG). Portfólio: cases para iPhone e Samsung, mochilas, garrafinhas, carteiras e nécessaires — todos customizáveis com nome, foto ou arte de ilustradores parceiros. +2,2M de fãs online e mais de 200 Gocasers.",
-  tags: ["Personalização", "Cases & Tech", "+130 Países", "Love Brand", "D2C"],
+  desc: "Maior e-commerce de acessórios personalizados do Brasil, com produção própria em Extrema (MG). Portfólio: cases para iPhone e Samsung, mochilas, garrafinhas, carteiras e nécessaires — todos customizáveis com nome, foto ou arte de ilustradores parceiros. +2,2M de fãs online e mais de 200 Gocasers.",
+  tags: ["Personalização", "Cases & Tech", "#1 Brasil", "Love Brand", "D2C"],
   url: "https://gocase.com.br",
   initials: "G",
 };

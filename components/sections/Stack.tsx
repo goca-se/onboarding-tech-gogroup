@@ -177,7 +177,7 @@ const gcInitialNodes: Node[] = [
       items: [{ icon: "🎨", name: "Configurador", desc: "Renderização em tempo real: texto, foto, arte." }] } },
   { id: "gc-checkout", type: "layer", position: { x: 0, y: 460 },
     data: { layer: "Checkout & Pagamentos", bg: "#f8ae13", textColor: "#1a1a1a",
-      items: [{ icon: "💳", name: "Checkout", desc: "Pagamentos nacionais e +130 países." }] } },
+      items: [{ icon: "💳", name: "Checkout", desc: "Checkout e meios de pagamento integrados." }] } },
   { id: "gc-oms", type: "layer", position: { x: 350, y: 220 },
     data: { layer: "OMS / Middleware", bg: "#E8403A", textColor: "#fff", isHub: true,
       items: [{ icon: "⚙️", name: "OMS Gocase", desc: "Gestão de pedidos, SKUs customizados e integrações." }] } },
@@ -206,7 +206,7 @@ const gcInitialNodes: Node[] = [
   { id: "gc-midia", type: "layer", position: { x: 740, y: 650 },
     data: { layer: "Mídia & Performance", bg: "#d7d900", textColor: "#2659a5",
       items: [
-        { icon: "🔵", name: "Meta Ads",     desc: "Aquisição nacional e global." },
+        { icon: "🔵", name: "Meta Ads",     desc: "Principal canal de aquisição." },
         { icon: "🟡", name: "Google Ads",   desc: "Search, Shopping e YouTube." },
         { icon: "⚫", name: "TikTok Ads",   desc: "Aquisição geração Z." },
       ] } },

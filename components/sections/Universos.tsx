@@ -56,28 +56,28 @@ export default function Universos() {
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
             {/* Squad Gobeaute */}
-            <div style={{ background: "rgba(230,23,130,0.15)", border: "2px solid #e61782", borderRadius: 20, padding: "20px 24px" }}>
+            <div style={{ background: "rgba(230,23,130,0.22)", border: "2px solid rgba(230,23,130,0.7)", borderRadius: 20, padding: "20px 24px" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
                 <span style={{ fontSize: "1.2rem" }}>💄</span>
-                <span style={{ fontWeight: 800, color: "#e61782", fontSize: "1rem" }}>Tech Gobeaute</span>
-                <span className="pill" style={{ background: "rgba(230,23,130,0.25)", color: "#e61782", fontSize: "0.55rem", padding: "3px 8px" }}>7 MARCAS DTC</span>
+                <span style={{ fontWeight: 800, color: "#ff6eb3", fontSize: "1rem" }}>Tech Gobeaute</span>
+                <span className="pill" style={{ background: "rgba(230,23,130,0.35)", color: "#ffadd6", fontSize: "0.55rem", padding: "3px 8px" }}>7 MARCAS DTC</span>
               </div>
-              <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.8rem", margin: 0, lineHeight: 1.6 }}>
+              <p style={{ color: "rgba(255,255,255,0.85)", fontSize: "0.8rem", margin: 0, lineHeight: 1.6 }}>
                 Stack de e-commerce DTC: Shopify, Yampi, Middleware v2, CRM, Analytics, Media.
                 7 marcas de beleza no portfólio ativo.
               </p>
             </div>
 
             {/* Squad Gocase */}
-            <div style={{ background: "rgba(232,64,58,0.15)", border: "2px solid #E8403A", borderRadius: 20, padding: "20px 24px" }}>
+            <div style={{ background: "rgba(232,64,58,0.22)", border: "2px solid rgba(232,64,58,0.7)", borderRadius: 20, padding: "20px 24px" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
                 <span style={{ fontSize: "1.2rem" }}>🎒</span>
-                <span style={{ fontWeight: 800, color: "#E8403A", fontSize: "1rem" }}>Tech Gocase</span>
-                <span className="pill" style={{ background: "rgba(232,64,58,0.25)", color: "#E8403A", fontSize: "0.55rem", padding: "3px 8px" }}>+130 PAÍSES</span>
+                <span style={{ fontWeight: 800, color: "#ff7b75", fontSize: "1rem" }}>Tech Gocase</span>
+                <span className="pill" style={{ background: "rgba(232,64,58,0.35)", color: "#ff9490", fontSize: "0.55rem", padding: "3px 8px" }}>#1 BR PERSONALIZADOS</span>
               </div>
-              <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.8rem", margin: 0, lineHeight: 1.6 }}>
-                Stack própria de acessórios personalizados: site interno, motor de customização,
-                produção em Extrema/MG e logística global.
+              <p style={{ color: "rgba(255,255,255,0.85)", fontSize: "0.8rem", margin: 0, lineHeight: 1.6 }}>
+                Stack própria de acessórios personalizados: site interno, motor de customização
+                e produção em Extrema/MG — maior e-commerce do segmento no Brasil.
               </p>
             </div>
           </div>

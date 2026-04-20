@@ -150,7 +150,7 @@ const defaultFerramentaGocase: Tool[] = [
     url: "https://analytics.google.com",
     logoDomain: "google.com",
     initials: "GA",
-    desc: "Funil de conversão, eventos de compra, comportamento de personalização e aquisição global.",
+    desc: "Funil de conversão, eventos de compra, comportamento de personalização e performance de aquisição.",
     category: "Analytics",
     color: "#2980b9",
   },

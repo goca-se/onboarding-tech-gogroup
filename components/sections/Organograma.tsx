@@ -138,7 +138,7 @@ const gcInitialNodes: Node[] = [
   { id: "gc-supply",    type: "setor", position: { x: -180, y: 560 },
     data: { icon: "🔄", label: "Supply Chain",   color: "#4a7c59", contrib: "Estoque de matéria-prima e SKUs personalizados" } },
   { id: "gc-inter",     type: "setor", position: { x: -180, y: 700 },
-    data: { icon: "🌍", label: "Internacional",  color: "#2980b9", contrib: "Logística para +130 países, ERPs e regulatório" } },
+    data: { icon: "🌍", label: "Expansão",        color: "#2980b9", contrib: "Novos canais, parcerias e integrações externas" } },
   { id: "gc-fiscal",    type: "setor", position: { x: -180, y: 840 },
     data: { icon: "💰", label: "Fiscal / Fin.",  color: "#8B4513", contrib: "Protheus (TOTVS), conciliação e relatórios do grupo" } },
   { id: "gc-b2c",       type: "setor", position: { x: 240, y: -80 },

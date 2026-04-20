@@ -124,7 +124,7 @@ const initialNodes: Node[] = [
   { id: "daniel",    type: "person", position: { x: 0, y: 220 },
     data: { name: "Daniel Damasceno", role: "Tech Lead", dept: "Backoffice Gocase", color: GOCASE_COLOR } },
   { id: "isabella",  type: "person", position: { x: 225, y: 220 },
-    data: { name: "Isabella Santos", role: "Desenvolvedora", dept: "Front Office Gocase", color: GOCASE_COLOR } },
+    data: { name: "Isabella Santos", role: "Tech Lead", dept: "Front Office Gocase", color: GOCASE_COLOR } },
   { id: "erik",      type: "person", position: { x: 455, y: 220 },
     data: { name: "Erik Rodrigues", role: "Especialista", dept: "Infra", color: INFRA_COLOR } },
   { id: "lucas",     type: "person", position: { x: 670, y: 220 },

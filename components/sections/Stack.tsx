@@ -17,6 +17,7 @@ import "@xyflow/react/dist/style.css";
 import { usePersistedFlow } from "@/hooks/usePersistedFlow";
 import NodeEditorPanel from "@/components/NodeEditorPanel";
 import { useBrand } from "@/context/BrandContext";
+import { BrandSelector } from "@/components/BrandSelector";
 
 /* ─── Node Components ─── */
 function LayerNode({ data }: { data: Record<string, unknown> }) {
@@ -269,6 +270,7 @@ export default function Stack() {
   return (
     <section id="stack" style={{ background: "#2659a5", padding: "80px 0 0" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 40px 40px" }}>
+        <BrandSelector variant="dark" />
         <div className="dots reveal" />
         <span className="pill reveal reveal-delay-1" style={{ marginBottom: 16, display: "inline-block" }}>ARQUITETURA</span>
         <h2 className="reveal reveal-delay-2" style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 800, fontSize: "clamp(28px, 3.5vw, 48px)", color: "#d7d900", margin: "0 0 12px" }}>

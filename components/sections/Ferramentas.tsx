@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useEditableData } from "@/hooks/useEditableData";
 import { useEditMode } from "@/context/EditModeContext";
 import { useBrand } from "@/context/BrandContext";
+import { BrandSelector } from "@/components/BrandSelector";
 
 const LOGO_TOKEN = "pk_X7-rxBQBQqmZkZzBIGhP1g";
 
@@ -399,6 +400,7 @@ export default function Ferramentas() {
       <div style={{ maxWidth: 1140, margin: "0 auto" }}>
 
         {/* Header */}
+        <BrandSelector variant="light" />
         <div className="dots reveal" />
         <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap", marginBottom: 4 }}>
           <span className="pill reveal reveal-delay-1" style={{ display: "inline-block" }}>FERRAMENTAS &amp; LINKS</span>

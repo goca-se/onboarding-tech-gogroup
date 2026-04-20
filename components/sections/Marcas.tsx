@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-const LOGO_TOKEN = "pk_X7-rxBQBQqmZkZzBIGhP1g";
+const LOGO_TOKEN = "pk_CII7EsFARtObSn1pyZlNhg";
 
 const gocase = {
   name: "Gocase",
@@ -216,12 +216,11 @@ function BrandCard({
         background: "#fff",
         borderRadius: 20,
         overflow: "hidden",
-        boxShadow: "0 2px 16px rgba(0,0,0,0.08)",
-        borderTop: `5px solid ${m.accent}`,
-        border: featured ? `1.5px solid ${m.accent}20` : undefined,
-        borderTopWidth: "5px",
-        borderTopStyle: "solid",
-        borderTopColor: m.accent,
+        boxShadow: featured
+          ? `0 4px 24px ${m.accent}18, 0 2px 8px rgba(0,0,0,0.06)`
+          : "0 2px 16px rgba(0,0,0,0.08)",
+        border: featured ? `1.5px solid ${m.accent}25` : "none",
+        borderTop: `${featured ? 6 : 5}px solid ${m.accent}`,
         transition: "transform 0.22s ease, box-shadow 0.22s ease",
         cursor: "pointer",
         gridColumn: featured ? "1 / -1" : undefined,

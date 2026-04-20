@@ -60,24 +60,24 @@ export default function Universos() {
               <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
                 <span style={{ fontSize: "1.2rem" }}>💄</span>
                 <span style={{ fontWeight: 800, color: "#e61782", fontSize: "1rem" }}>Tech Gobeaute</span>
-                <span className="pill" style={{ background: "#d7d900", color: "#2659a5", fontSize: "0.55rem", padding: "3px 8px" }}>FOCO DESTA PLATAFORMA</span>
+                <span className="pill" style={{ background: "rgba(230,23,130,0.25)", color: "#e61782", fontSize: "0.55rem", padding: "3px 8px" }}>7 MARCAS DTC</span>
               </div>
               <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.8rem", margin: 0, lineHeight: 1.6 }}>
-                Cuida de toda a stack de e-commerce DTC: Shopify, Yampi, Middleware v2, CRM, Analytics, Media.
+                Stack de e-commerce DTC: Shopify, Yampi, Middleware v2, CRM, Analytics, Media.
                 7 marcas de beleza no portfólio ativo.
               </p>
             </div>
 
-            {/* Outro time: Gocase */}
-            <div style={{ background: "rgba(38,89,165,0.3)", border: "2px solid rgba(255,255,255,0.3)", borderRadius: 20, padding: "20px 24px" }}>
+            {/* Squad Gocase */}
+            <div style={{ background: "rgba(232,64,58,0.15)", border: "2px solid #E8403A", borderRadius: 20, padding: "20px 24px" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
                 <span style={{ fontSize: "1.2rem" }}>🎒</span>
-                <span style={{ fontWeight: 800, color: "#fff", fontSize: "1rem" }}>Tech Gocase</span>
-                <span className="pill" style={{ background: "rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.85)", fontSize: "0.55rem", padding: "3px 8px" }}>OUTRO TIME</span>
+                <span style={{ fontWeight: 800, color: "#E8403A", fontSize: "1rem" }}>Tech Gocase</span>
+                <span className="pill" style={{ background: "rgba(232,64,58,0.25)", color: "#E8403A", fontSize: "0.55rem", padding: "3px 8px" }}>+130 PAÍSES</span>
               </div>
               <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.8rem", margin: 0, lineHeight: 1.6 }}>
-                Time de Tech distinto com operação própria em Extrema/MG — sistemas de personalização,
-                site desenvolvido internamente e stack independente do grupo.
+                Stack própria de acessórios personalizados: site interno, motor de customização,
+                produção em Extrema/MG e logística global.
               </p>
             </div>
           </div>
@@ -129,12 +129,12 @@ export default function Universos() {
             <BrowserCard dots="gobeaute.com.br">
               <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 8, marginBottom: 20 }}>
                 <span className="pill" style={{ background: "#e61782", color: "#fff", fontSize: "0.6rem" }}>GOBEAUTE</span>
-                <span className="pill" style={{ background: "#d7d900", color: "#2659a5", fontSize: "0.6rem" }}>FOCO DESTA PLATAFORMA</span>
+                <span className="pill" style={{ background: "#f5eaf2", color: "#e61782", fontSize: "0.6rem" }}>BEAUTY DTC</span>
               </div>
               <h3 style={{ fontWeight: 800, fontSize: "1.4rem", color: "#e61782", margin: "0 0 10px" }}>Gobeaute</h3>
               <p style={{ fontSize: "0.88rem", color: "#555", lineHeight: 1.65, margin: "0 0 20px" }}>
-                Hub de marcas de beleza <strong>DTC (Direct-to-Consumer)</strong>. É onde o time de Tech
-                Gobeaute atua com <strong>maior profundidade e foco</strong>.
+                Hub de marcas de beleza <strong>DTC (Direct-to-Consumer)</strong>. O time de Tech Gobeaute
+                cuida de toda a operação digital das 7 marcas do portfólio.
               </p>
               <div style={{ fontSize: "0.72rem", fontWeight: 700, color: "#888", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 12 }}>
                 Marcas do portfólio

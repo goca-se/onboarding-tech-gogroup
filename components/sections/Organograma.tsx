@@ -14,6 +14,7 @@ import "@xyflow/react/dist/style.css";
 import { usePersistedFlow } from "@/hooks/usePersistedFlow";
 import NodeEditorPanel from "@/components/NodeEditorPanel";
 import { useBrand } from "@/context/BrandContext";
+import { BrandSelector } from "@/components/BrandSelector";
 
 /* ─── Custom Nodes ─── */
 function SetorNode({ data }: { data: Record<string, string> }) {
@@ -201,6 +202,7 @@ export default function Organograma() {
   return (
     <section id="organograma" style={{ background: "#f5f0e8", padding: "80px 0 0" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 40px 40px" }}>
+        <BrandSelector variant="light" />
         <div className="dots reveal" />
         <span className="pill reveal reveal-delay-1" style={{ marginBottom: 16, display: "inline-block" }}>ORGANOGRAMA</span>
         <h2 className="reveal reveal-delay-2" style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 800, fontSize: "clamp(28px, 3.5vw, 48px)", color: "#2659a5", margin: "0 0 12px" }}>

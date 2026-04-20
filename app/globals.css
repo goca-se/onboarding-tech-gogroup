@@ -1,26 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: 'Poppins', sans-serif;
+  --color-gg-blue:   #2659a5;
+  --color-gg-yellow: #d7d900;
+  --color-gg-orange: #e5381a;
+  --color-gg-pink:   #e61782;
+  --color-gg-red:    #e5273c;
+  --color-gg-gold:   #f8ae13;
+  --color-gg-sky:    #3dbfef;
+  --color-gg-cream:  #f5f0e8;
+  --color-gg-navy:   #1b2a3b;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Poppins', sans-serif;
+  background: #f5f0e8;
+  color: #1a1a1a;
+  -webkit-font-smoothing: antialiased;
 }
+
+/* ── Scroll animation base ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+.reveal-delay-6 { transition-delay: 0.6s; }
+
+/* ── Three dots decoration ── */
+.dots::before {
+  content: '● ● ●';
+  color: #d7d900;
+  font-size: 0.55rem;
+  letter-spacing: 4px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+/* ── Pill / tag ── */
+.pill {
+  display: inline-block;
+  background: #d7d900;
+  color: #2659a5;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 999px;
+}
+
+.pill-white {
+  background: #fff;
+  color: #2659a5;
+}
+
+.pill-blue {
+  background: #2659a5;
+  color: #fff;
+}
+
+/* ── Card hover ── */
+.card-hover {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.card-hover:hover {
+  transform: scale(1.025);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.18) !important;
+}
+
+/* ── Navbar ── */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: #2659a5;
+  border-bottom: 3px solid #d7d900;
+  padding: 0 32px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-links {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.nav-links a:hover {
+  background: rgba(215,217,0,0.15);
+  color: #d7d900;
+}
+
+/* ── Yellow border frame (hero) ── */
+.hero-frame {
+  border: 12px solid #d7d900;
+  border-radius: 28px;
+  margin: 20px;
+  overflow: hidden;
+}
+
+/* ── Layer card (stack) ── */
+.layer-card {
+  border-radius: 20px;
+  padding: 28px 32px;
+  margin-bottom: 12px;
+}
+
+/* ── Browser mockup card ── */
+.browser-card {
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+}
+
+.browser-bar {
+  background: #f0ece4;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.browser-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+/* ── Arrow bounce ── */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+.bounce { animation: bounce 1.6s ease-in-out infinite; }
+
+/* ── Strikethrough text ── */
+.line-through-custom {
+  text-decoration: line-through;
+  opacity: 0.45;
+}
+
+/* ── Dashed border ── */
+.dashed { border: 2px dashed rgba(255,255,255,0.35); }
+.dashed-dark { border: 2px dashed rgba(38,89,165,0.3); }

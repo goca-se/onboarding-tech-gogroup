@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useEditableData } from "@/hooks/useEditableData";
 import { useEditMode } from "@/context/EditModeContext";
+import { useBrand } from "@/context/BrandContext";
 
 const LOGO_TOKEN = "pk_X7-rxBQBQqmZkZzBIGhP1g";
 
@@ -17,7 +18,8 @@ interface Tool {
   color: string;
 }
 
-const defaultFerramenta: Tool[] = [
+/* ─── Gobeaute tools ─── */
+const defaultFerramentaGobeaute: Tool[] = [
   {
     name: "Cosmos",
     subtitle: "Middleware v2",
@@ -111,6 +113,85 @@ const defaultFerramenta: Tool[] = [
   },
 ];
 
+/* ─── Gocase tools ─── */
+const defaultFerramentaGocase: Tool[] = [
+  {
+    name: "Portal Gocase",
+    subtitle: "Admin Interno",
+    url: "https://gocase.com.br",
+    logoDomain: "gocase.com.br",
+    initials: "PG",
+    desc: "Painel de administração interno — gestão de pedidos, SKUs personalizados e operação da loja.",
+    category: "Integração",
+    color: "#E8403A",
+  },
+  {
+    name: "Configurador de Produtos",
+    subtitle: "Engine de Personalização",
+    url: "https://gocase.com.br",
+    logoDomain: null,
+    initials: "CP",
+    desc: "Motor custom de renderização de produtos. Processa textos, fotos e artes de ilustradores parceiros em tempo real.",
+    category: "Produto Digital",
+    color: "#9B59B6",
+  },
+  {
+    name: "Metabase",
+    url: "https://metabase.gobeaute.com.br",
+    logoDomain: "metabase.com",
+    initials: "M",
+    desc: "BI e dashboards operacionais — vendas, LTV, métricas de personalização e performance de campanhas.",
+    category: "Analytics",
+    color: "#2980b9",
+  },
+  {
+    name: "Google Analytics 4",
+    url: "https://analytics.google.com",
+    logoDomain: "google.com",
+    initials: "GA",
+    desc: "Funil de conversão, eventos de compra, comportamento de personalização e aquisição global.",
+    category: "Analytics",
+    color: "#2980b9",
+  },
+  {
+    name: "Jira",
+    url: "https://gocase.atlassian.net",
+    logoDomain: "atlassian.com",
+    initials: "Ji",
+    desc: "Gestão de sprints, tasks de dev, bugs e acompanhamento de entregas do time de Tech Gocase.",
+    category: "Gestão",
+    color: "#27ae60",
+  },
+  {
+    name: "Confluence",
+    url: "https://gocase.atlassian.net/wiki",
+    logoDomain: "atlassian.com",
+    initials: "Cf",
+    desc: "Documentação técnica — arquitetura, processos, integrações e decisões do time Gocase.",
+    category: "Documentação",
+    color: "#7f8c8d",
+  },
+  {
+    name: "Google Drive",
+    url: "https://drive.google.com",
+    logoDomain: "drive.google.com",
+    initials: "GD",
+    desc: "Repositório oficial — briefings, análises, apresentações e docs de produto Gocase.",
+    category: "Documentação",
+    color: "#7f8c8d",
+  },
+  {
+    name: "GitHub",
+    url: "https://github.com/goca-se/",
+    logoDomain: "github.com",
+    initials: "GH",
+    desc: "Versionamento do site, configurador de produtos, APIs e automações do time Gocase.",
+    category: "Desenvolvimento",
+    color: "#1a1a18",
+  },
+];
+
+/* ─── Shared links ─── */
 const defaultLinks: Tool[] = [
   {
     name: "TeamGuide",
@@ -142,16 +223,17 @@ const defaultLinks: Tool[] = [
 ];
 
 const allCategories = [
-  { label: "Integração",      color: "#e8843a" },
-  { label: "Analytics",       color: "#2980b9" },
-  { label: "CRO",             color: "#7B5EA7" },
-  { label: "Gestão",          color: "#27ae60" },
-  { label: "E-commerce",      color: "#c0392b" },
-  { label: "Documentação",    color: "#7f8c8d" },
-  { label: "Desenvolvimento", color: "#1a1a18" },
-  { label: "RH & Carreira",   color: "#e91e8c" },
-  { label: "Cultura",         color: "#d4a017" },
-  { label: "Suporte Interno", color: "#546e7a" },
+  { label: "Integração",       color: "#e8843a" },
+  { label: "Analytics",        color: "#2980b9" },
+  { label: "CRO",              color: "#7B5EA7" },
+  { label: "Produto Digital",  color: "#9B59B6" },
+  { label: "Gestão",           color: "#27ae60" },
+  { label: "E-commerce",       color: "#c0392b" },
+  { label: "Documentação",     color: "#7f8c8d" },
+  { label: "Desenvolvimento",  color: "#1a1a18" },
+  { label: "RH & Carreira",    color: "#e91e8c" },
+  { label: "Cultura",          color: "#d4a017" },
+  { label: "Suporte Interno",  color: "#546e7a" },
 ];
 
 /* ── Logo with img.logo.dev fallback ── */
@@ -163,19 +245,11 @@ function ToolLogo({ logoDomain, initials, color }: { logoDomain: string | null; 
     return (
       <div
         style={{
-          width: 44,
-          height: 44,
-          borderRadius: 10,
-          background: color,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          fontFamily: "'DM Sans', sans-serif",
-          fontWeight: 700,
-          color: "#fff",
+          width: 44, height: 44, borderRadius: 10, background: color,
+          display: "flex", alignItems: "center", justifyContent: "center",
+          fontFamily: "'DM Sans', sans-serif", fontWeight: 700, color: "#fff",
           fontSize: initials.length > 2 ? "0.7rem" : initials.length === 2 ? "0.88rem" : "1.1rem",
-          flexShrink: 0,
-          letterSpacing: "-0.02em",
+          flexShrink: 0, letterSpacing: "-0.02em",
         }}
       >
         {initials}
@@ -190,30 +264,14 @@ function ToolLogo({ logoDomain, initials, color }: { logoDomain: string | null; 
       width={44}
       height={44}
       onError={() => setFailed(true)}
-      style={{
-        width: 44,
-        height: 44,
-        borderRadius: 10,
-        objectFit: "contain",
-        background: "#fff",
-        border: "1px solid #ebe8e3",
-        flexShrink: 0,
-      }}
+      style={{ width: 44, height: 44, borderRadius: 10, objectFit: "contain", background: "#fff", border: "1px solid #ebe8e3", flexShrink: 0 }}
     />
   );
 }
 
 /* ── Shared card ── */
-function ToolCard({
-  tool,
-  onEdit,
-  onDelete,
-  showEdit,
-}: {
-  tool: Tool;
-  onEdit?: () => void;
-  onDelete?: () => void;
-  showEdit: boolean;
+function ToolCard({ tool, onEdit, onDelete, showEdit }: {
+  tool: Tool; onEdit?: () => void; onDelete?: () => void; showEdit: boolean;
 }) {
   return (
     <a
@@ -221,15 +279,10 @@ function ToolCard({
       target="_blank"
       rel="noopener noreferrer"
       style={{
-        display: "block",
-        background: "#fff",
-        borderRadius: 16,
-        borderTop: `4px solid ${tool.color}`,
-        padding: "18px 20px",
-        textDecoration: "none",
+        display: "block", background: "#fff", borderRadius: 16,
+        borderTop: `4px solid ${tool.color}`, padding: "18px 20px", textDecoration: "none",
         boxShadow: "0 1px 6px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04)",
-        transition: "transform 0.18s ease, box-shadow 0.18s ease",
-        position: "relative",
+        transition: "transform 0.18s ease, box-shadow 0.18s ease", position: "relative",
       }}
       onMouseEnter={(e) => {
         (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-4px)";
@@ -240,65 +293,30 @@ function ToolCard({
         (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 1px 6px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04)";
       }}
     >
-      {/* Edit controls */}
       {showEdit && (
-        <div
-          style={{ position: "absolute", top: 10, right: 10, display: "flex", gap: 4, zIndex: 2 }}
-          onClick={(e) => e.preventDefault()}
-        >
-          <button
-            onClick={onEdit}
-            style={{ background: "#2659a5", border: "none", borderRadius: 5, width: 24, height: 24, cursor: "pointer", color: "#fff", fontSize: "0.7rem", display: "flex", alignItems: "center", justifyContent: "center" }}
-          >✏</button>
-          <button
-            onClick={onDelete}
-            style={{ background: "#e5381a", border: "none", borderRadius: 5, width: 24, height: 24, cursor: "pointer", color: "#fff", fontSize: "0.7rem", display: "flex", alignItems: "center", justifyContent: "center" }}
-          >✕</button>
+        <div style={{ position: "absolute", top: 10, right: 10, display: "flex", gap: 4, zIndex: 2 }} onClick={(e) => e.preventDefault()}>
+          <button onClick={onEdit}   style={{ background: "#2659a5", border: "none", borderRadius: 5, width: 24, height: 24, cursor: "pointer", color: "#fff", fontSize: "0.7rem", display: "flex", alignItems: "center", justifyContent: "center" }}>✏</button>
+          <button onClick={onDelete} style={{ background: "#e5381a", border: "none", borderRadius: 5, width: 24, height: 24, cursor: "pointer", color: "#fff", fontSize: "0.7rem", display: "flex", alignItems: "center", justifyContent: "center" }}>✕</button>
         </div>
       )}
-
-      {/* Header row */}
       <div style={{ display: "flex", alignItems: "flex-start", gap: 12, marginBottom: 12 }}>
         <ToolLogo logoDomain={tool.logoDomain} initials={tool.initials} color={tool.color} />
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 6 }}>
             <div>
-              <div style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "0.92rem", color: "#1a1a1a", lineHeight: 1.3 }}>
-                {tool.name}
-              </div>
-              {tool.subtitle && (
-                <div style={{ fontSize: "0.68rem", color: "#aaa", fontFamily: "'DM Sans', sans-serif", marginTop: 1 }}>
-                  {tool.subtitle}
-                </div>
-              )}
+              <div style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "0.92rem", color: "#1a1a1a", lineHeight: 1.3 }}>{tool.name}</div>
+              {tool.subtitle && <div style={{ fontSize: "0.68rem", color: "#aaa", fontFamily: "'DM Sans', sans-serif", marginTop: 1 }}>{tool.subtitle}</div>}
             </div>
             <span style={{ color: "#ccc", fontSize: "0.8rem", flexShrink: 0, marginTop: 2 }}>↗</span>
           </div>
           <div style={{ marginTop: 6 }}>
-            <span
-              style={{
-                display: "inline-block",
-                background: `${tool.color}15`,
-                color: tool.color,
-                fontSize: "0.58rem",
-                fontWeight: 700,
-                letterSpacing: "0.09em",
-                textTransform: "uppercase",
-                padding: "2px 8px",
-                borderRadius: 999,
-                fontFamily: "'DM Sans', sans-serif",
-              }}
-            >
+            <span style={{ display: "inline-block", background: `${tool.color}15`, color: tool.color, fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.09em", textTransform: "uppercase", padding: "2px 8px", borderRadius: 999, fontFamily: "'DM Sans', sans-serif" }}>
               {tool.category}
             </span>
           </div>
         </div>
       </div>
-
-      {/* Description */}
-      <p style={{ fontSize: "0.77rem", color: "#777", margin: 0, lineHeight: 1.65, fontFamily: "'DM Sans', sans-serif" }}>
-        {tool.desc}
-      </p>
+      <p style={{ fontSize: "0.77rem", color: "#777", margin: 0, lineHeight: 1.65, fontFamily: "'DM Sans', sans-serif" }}>{tool.desc}</p>
     </a>
   );
 }
@@ -328,19 +346,10 @@ function ToolEditor({ tool, onSave, onCancel }: { tool: Tool; onSave: (t: Tool) 
 }
 
 /* ── Grid with edit support ── */
-function ToolGrid({
-  tools,
-  onUpdate,
-  isEditMode,
-  onAdd,
-}: {
-  tools: Tool[];
-  onUpdate: (updated: Tool[]) => void;
-  isEditMode: boolean;
-  onAdd: () => void;
+function ToolGrid({ tools, onUpdate, isEditMode, onAdd }: {
+  tools: Tool[]; onUpdate: (updated: Tool[]) => void; isEditMode: boolean; onAdd: () => void;
 }) {
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
-
   const save = (i: number, t: Tool) => { onUpdate(tools.map((x, idx) => (idx === i ? t : x))); setEditingIndex(null); };
   const del  = (i: number)           => { onUpdate(tools.filter((_, idx) => idx !== i)); };
 
@@ -350,13 +359,7 @@ function ToolGrid({
         isEditMode && editingIndex === i ? (
           <ToolEditor key={i} tool={tool} onSave={(t) => save(i, t)} onCancel={() => setEditingIndex(null)} />
         ) : (
-          <ToolCard
-            key={i}
-            tool={tool}
-            showEdit={isEditMode}
-            onEdit={() => setEditingIndex(i)}
-            onDelete={() => del(i)}
-          />
+          <ToolCard key={i} tool={tool} showEdit={isEditMode} onEdit={() => setEditingIndex(i)} onDelete={() => del(i)} />
         )
       )}
       {isEditMode && (
@@ -374,12 +377,22 @@ function ToolGrid({
 
 /* ── Main section ── */
 export default function Ferramentas() {
-  const { data: ferrs, setData: setFerrs, reset: resetFerrs } = useEditableData<Tool[]>("ferrs-v2", defaultFerramenta);
-  const { data: links, setData: setLinks, reset: resetLinks } = useEditableData<Tool[]>("links-v2", defaultLinks);
+  const { brand } = useBrand();
   const { isEditMode } = useEditMode();
+
+  const { data: ferrsGb, setData: setFerrsGb, reset: resetFerrsGb } = useEditableData<Tool[]>("ferrs-v2",       defaultFerramentaGobeaute);
+  const { data: ferrsGc, setData: setFerrsGc, reset: resetFerrsGc } = useEditableData<Tool[]>("ferrs-gc-v1",    defaultFerramentaGocase);
+  const { data: links,   setData: setLinks,   reset: resetLinks }   = useEditableData<Tool[]>("links-v2",       defaultLinks);
+
+  const ferrs    = brand === "gocase" ? ferrsGc    : ferrsGb;
+  const setFerrs = brand === "gocase" ? setFerrsGc : setFerrsGb;
+  const resetFerrs = brand === "gocase" ? resetFerrsGc : resetFerrsGb;
 
   const addTool = (list: Tool[], setList: (t: Tool[]) => void) =>
     setList([...list, { name: "Novo Link", url: "#", logoDomain: null, initials: "??", desc: "Descrição", category: "Integração", color: "#2659a5" }]);
+
+  const brandLabel = brand === "gocase" ? "GOCASE" : "GOBEAUTE";
+  const brandAccent = brand === "gocase" ? "#E8403A" : "#2659a5";
 
   return (
     <section id="ferramentas" style={{ background: "#f0eee9", padding: "100px 40px 80px" }}>
@@ -413,57 +426,28 @@ export default function Ferramentas() {
 
         {/* Sub-label */}
         <div style={{ marginBottom: 20 }}>
-          <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "0.7rem", color: "#2659a5", letterSpacing: "0.1em", textTransform: "uppercase" }}>
-            FERRAMENTAS TECH GOBEAUTE
+          <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "0.7rem", color: brandAccent, letterSpacing: "0.1em", textTransform: "uppercase" }}>
+            FERRAMENTAS TECH {brandLabel}
           </span>
         </div>
 
         {/* Grid 1 */}
-        <ToolGrid
-          tools={ferrs}
-          onUpdate={setFerrs}
-          isEditMode={isEditMode}
-          onAdd={() => addTool(ferrs, setFerrs)}
-        />
+        <ToolGrid tools={ferrs} onUpdate={setFerrs} isEditMode={isEditMode} onAdd={() => addTool(ferrs, setFerrs)} />
 
         {/* Divider */}
         <div style={{ display: "flex", alignItems: "center", gap: 16, margin: "52px 0 40px" }}>
           <div style={{ flex: 1, height: 1, background: "#e4e0d8" }} />
-          <span
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: "11px",
-              color: "#aaa",
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-              whiteSpace: "nowrap",
-            }}
-          >
+          <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "11px", color: "#aaa", letterSpacing: "0.08em", textTransform: "uppercase", whiteSpace: "nowrap" }}>
             Links Chave · GoGroup
           </span>
           <div style={{ flex: 1, height: 1, background: "#e4e0d8" }} />
         </div>
 
         {/* Grid 2 */}
-        <ToolGrid
-          tools={links}
-          onUpdate={setLinks}
-          isEditMode={isEditMode}
-          onAdd={() => addTool(links, setLinks)}
-        />
+        <ToolGrid tools={links} onUpdate={setLinks} isEditMode={isEditMode} onAdd={() => addTool(links, setLinks)} />
 
         {/* Legend */}
-        <div
-          style={{
-            marginTop: 48,
-            paddingTop: 28,
-            borderTop: "1px solid #e4e0d8",
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "8px 24px",
-            alignItems: "center",
-          }}
-        >
+        <div style={{ marginTop: 48, paddingTop: 28, borderTop: "1px solid #e4e0d8", display: "flex", flexWrap: "wrap", gap: "8px 24px", alignItems: "center" }}>
           <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", color: "#bbb", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", marginRight: 4 }}>
             Categorias
           </span>

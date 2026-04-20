@@ -13,6 +13,7 @@ import {
 import "@xyflow/react/dist/style.css";
 import { usePersistedFlow } from "@/hooks/usePersistedFlow";
 import NodeEditorPanel from "@/components/NodeEditorPanel";
+import { useBrand } from "@/context/BrandContext";
 
 /* ─── Custom Nodes ─── */
 function SetorNode({ data }: { data: Record<string, string> }) {
@@ -67,7 +68,8 @@ function MarketplaceNode({ data }: { data: Record<string, string> }) {
 
 const nodeTypes = { setor: SetorNode, hub: TechHubNode, outrotime: OutroTimeNode, marketplace: MarketplaceNode };
 
-const initialNodes: Node[] = [
+/* ─── Gobeaute org data ─── */
+const gbInitialNodes: Node[] = [
   { id: "hub-gobeaute", type: "hub", position: { x: 240, y: 320 },
     data: { icon: "💄", label: "Tech Gobeaute", sub: "Hub Central", bg: "#e61782", border: "#d7d900" } },
   { id: "growth",     type: "setor", position: { x: -180, y: 0 },
@@ -105,7 +107,7 @@ const E = (id: string, source: string, target: string, color: string, animated =
   type: "smoothstep",
 });
 
-const initialEdges: Edge[] = [
+const gbInitialEdges: Edge[] = [
   E("e-b2b",        "b2b",        "hub-gobeaute", "#C17B2E", true),
   E("e-growth",     "growth",     "hub-gobeaute", "#e5381a", true),
   E("e-marketing",  "marketing",  "hub-gobeaute", "#e61782", true),
@@ -120,9 +122,63 @@ const initialEdges: Edge[] = [
   E("e-marketplace","marketplace", "hub-gobeaute","#bbb"),
 ];
 
+/* ─── Gocase org data ─── */
+const gcInitialNodes: Node[] = [
+  { id: "hub-gocase", type: "hub", position: { x: 240, y: 320 },
+    data: { icon: "🎒", label: "Tech Gocase", sub: "Hub Central", bg: "#E8403A", border: "#d7d900" } },
+  { id: "gc-design",    type: "setor", position: { x: -180, y: 0 },
+    data: { icon: "🎨", label: "Design / UX",    color: "#9B59B6", contrib: "Interfaces, configurador de produtos e experiência de compra" } },
+  { id: "gc-marketing", type: "setor", position: { x: -180, y: 140 },
+    data: { icon: "📣", label: "Marketing",      color: "#e61782", contrib: "Campanhas globais, influencers, cupons e conteúdo de marca" } },
+  { id: "gc-cx",        type: "setor", position: { x: -180, y: 280 },
+    data: { icon: "🎧", label: "CX / CS",        color: "#3dbfef", contrib: "Atendimento, dados de pedidos e automações de pós-venda" } },
+  { id: "gc-ops",       type: "setor", position: { x: -180, y: 420 },
+    data: { icon: "🏭", label: "Produção / Ops", color: "#f8ae13", contrib: "Fábrica em Extrema/MG, produção e expedição de pedidos" } },
+  { id: "gc-supply",    type: "setor", position: { x: -180, y: 560 },
+    data: { icon: "🔄", label: "Supply Chain",   color: "#4a7c59", contrib: "Estoque de matéria-prima e SKUs personalizados" } },
+  { id: "gc-inter",     type: "setor", position: { x: -180, y: 700 },
+    data: { icon: "🌍", label: "Internacional",  color: "#2980b9", contrib: "Logística para +130 países, ERPs e regulatório" } },
+  { id: "gc-fiscal",    type: "setor", position: { x: -180, y: 840 },
+    data: { icon: "💰", label: "Fiscal / Fin.",  color: "#8B4513", contrib: "Protheus (TOTVS), conciliação e relatórios do grupo" } },
+  { id: "gc-b2c",       type: "setor", position: { x: 240, y: -80 },
+    data: { icon: "🛍️", label: "B2C / Loja",    color: "#E8403A", contrib: "Site gocase.com.br e app — jornada de compra e CRO" } },
+  { id: "gc-bi",        type: "setor", position: { x: 660, y: 0 },
+    data: { icon: "📊", label: "BI / Dados",     color: "#7B4F8C", contrib: "GA4 → BigQuery → Metabase, KPIs de personalização" } },
+  { id: "gc-people",    type: "setor", position: { x: 660, y: 140 },
+    data: { icon: "👥", label: "People",         color: "#d7d900", contrib: "Automações internas, onboarding e suporte pontual" } },
+  { id: "gc-produto",   type: "setor", position: { x: 660, y: 280 },
+    data: { icon: "💎", label: "Produto Digital",color: "#e5273c", contrib: "Features do configurador, app e plataforma de compra" } },
+  { id: "gobeaute-time", type: "outrotime", position: { x: 660, y: 440 },
+    data: { icon: "💄", label: "Gobeaute",
+      contrib: "Outro time de Tech com 7 marcas de beleza DTC — sistemas e stack próprios." } },
+  { id: "gc-marketplace", type: "marketplace", position: { x: 240, y: 640 },
+    data: { label: "Marketplace", contrib: "ML, TikTok Shop, Amazon, Shopee — gestão própria" } },
+];
+
+const gcInitialEdges: Edge[] = [
+  E("gc-b2c",        "gc-b2c",       "hub-gocase",  "#E8403A", true),
+  E("gc-design",     "gc-design",    "hub-gocase",  "#9B59B6", true),
+  E("gc-marketing",  "gc-marketing", "hub-gocase",  "#e61782", true),
+  E("gc-cx",         "gc-cx",        "hub-gocase",  "#3dbfef", true),
+  E("gc-ops",        "gc-ops",       "hub-gocase",  "#f8ae13", true),
+  E("gc-supply",     "gc-supply",    "hub-gocase",  "#4a7c59", true),
+  E("gc-inter",      "gc-inter",     "hub-gocase",  "#2980b9", true),
+  E("gc-fiscal",     "gc-fiscal",    "hub-gocase",  "#8B4513", true),
+  E("gc-bi",         "hub-gocase",   "gc-bi",       "#7B4F8C", true),
+  E("gc-people",     "hub-gocase",   "gc-people",   "#d7d900", true),
+  E("gc-produto",    "hub-gocase",   "gc-produto",  "#e5273c", true),
+  E("gc-mkt",        "gc-marketplace","hub-gocase",  "#bbb"),
+];
+
+/* ─── Component ─── */
 export default function Organograma() {
+  const { brand } = useBrand();
+
+  const gbFlow = usePersistedFlow("organograma-gobeaute", gbInitialNodes, gbInitialEdges);
+  const gcFlow = usePersistedFlow("organograma-gocase",   gcInitialNodes, gcInitialEdges);
+
   const { nodes, setNodes, onNodesChange, edges, onEdgesChange, onConnect, resetFlow, ready } =
-    usePersistedFlow("organograma", initialNodes, initialEdges);
+    brand === "gocase" ? gcFlow : gbFlow;
 
   const [editingNode, setEditingNode] = useState<Node | null>(null);
 
@@ -137,16 +193,21 @@ export default function Organograma() {
     [setNodes]
   );
 
+  const hubColor = brand === "gocase" ? "#E8403A" : "#e61782";
+  const hubLabel = brand === "gocase" ? "Tech Gocase (hub)" : "Tech Gobeaute (hub)";
+  const outroLabel = brand === "gocase" ? "Gobeaute (outro time)" : "Outro time (Gocase)";
+  const brandLabel = brand === "gocase" ? "Gocase" : "Gobeaute";
+
   return (
     <section id="organograma" style={{ background: "#f5f0e8", padding: "80px 0 0" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 40px 40px" }}>
         <div className="dots reveal" />
         <span className="pill reveal reveal-delay-1" style={{ marginBottom: 16, display: "inline-block" }}>ORGANOGRAMA</span>
         <h2 className="reveal reveal-delay-2" style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 800, fontSize: "clamp(28px, 3.5vw, 48px)", color: "#2659a5", margin: "0 0 12px" }}>
-          Como o Time de Tech se Conecta
+          Como o Time de Tech {brandLabel} se Conecta
         </h2>
         <p className="reveal reveal-delay-3" style={{ fontSize: "1rem", color: "#666", marginBottom: 8, fontWeight: 600, fontStyle: "italic" }}>
-          Tech Gobeaute trabalha <em>junto</em> com todos os setores — não para eles.
+          Tech {brandLabel} trabalha <em>junto</em> com todos os setores — não para eles.
         </p>
         <p style={{ color: "#999", fontSize: "0.8rem", marginBottom: 0 }}>
           Arraste · Zoom · Pan · Duplo clique para editar · Delete/Backspace para excluir selecionado
@@ -173,7 +234,7 @@ export default function Organograma() {
           <Controls style={{ background: "#2659a5", borderRadius: 12, border: "2px solid #d7d900" }} />
           <MiniMap
             nodeColor={(n) => {
-              if (n.type === "hub") return (n.data as Record<string,string>).bg || "#e61782";
+              if (n.type === "hub") return (n.data as Record<string,string>).bg || hubColor;
               if (n.type === "marketplace") return "#bbb";
               if (n.type === "outrotime") return "#2659a5";
               return (n.data as Record<string,string>).color || "#2659a5";
@@ -186,8 +247,8 @@ export default function Organograma() {
         <div style={{ position: "absolute", top: 16, left: 16, background: "rgba(0,0,0,0.75)", borderRadius: 12, padding: "12px 16px", fontSize: "0.7rem", color: "#fff", backdropFilter: "blur(8px)", zIndex: 10 }}>
           <div style={{ fontWeight: 700, marginBottom: 8, color: "#d7d900", letterSpacing: "0.06em", textTransform: "uppercase" }}>Legenda</div>
           {[
-            { color: "#e61782", label: "Tech Gobeaute (hub)" },
-            { color: "#2659a5", label: "Outro time (Gocase)" },
+            { color: hubColor, label: hubLabel },
+            { color: "#2659a5", label: outroLabel },
             { color: "#bbb",    label: "Marketplace (terceiros)" },
           ].map(l => (
             <div key={l.label} style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 4 }}>
@@ -203,7 +264,6 @@ export default function Organograma() {
           </button>
         </div>
 
-        {/* Node editor panel */}
         {editingNode && (
           <NodeEditorPanel
             node={editingNode}

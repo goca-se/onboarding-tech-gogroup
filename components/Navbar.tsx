@@ -1,6 +1,7 @@
 "use client";
 
 import { useEditMode } from "@/context/EditModeContext";
+import { useBrand, type Brand } from "@/context/BrandContext";
 import { useSession, signOut } from "next-auth/react";
 
 const links = [
@@ -14,8 +15,14 @@ const links = [
   { href: "#equipe",       label: "Equipe" },
 ];
 
+const BRANDS: { value: Brand; label: string; accent: string }[] = [
+  { value: "gobeaute", label: "Gobeaute", accent: "#e61782" },
+  { value: "gocase",   label: "Gocase",   accent: "#E8403A" },
+];
+
 export default function Navbar() {
   const { isEditMode, toggleEditMode } = useEditMode();
+  const { brand, setBrand } = useBrand();
   const { data: session } = useSession();
 
   return (
@@ -36,6 +43,44 @@ export default function Navbar() {
       </ul>
 
       <div style={{ display: "flex", alignItems: "center", gap: 10, flexShrink: 0 }}>
+
+        {/* Brand selector */}
+        <div style={{
+          display: "flex",
+          background: "rgba(255,255,255,0.08)",
+          borderRadius: 10,
+          padding: 3,
+          gap: 2,
+        }}>
+          {BRANDS.map((b) => {
+            const active = brand === b.value;
+            return (
+              <button
+                key={b.value}
+                onClick={() => setBrand(b.value)}
+                style={{
+                  background: active ? "#fff" : "transparent",
+                  color: active ? b.accent : "rgba(255,255,255,0.5)",
+                  border: "none",
+                  borderRadius: 7,
+                  padding: "5px 12px",
+                  fontFamily: "'Poppins', sans-serif",
+                  fontWeight: 700,
+                  fontSize: "0.6rem",
+                  cursor: "pointer",
+                  letterSpacing: "0.04em",
+                  textTransform: "uppercase",
+                  transition: "all 0.18s ease",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {b.label}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Edit button */}
         <button
           onClick={toggleEditMode}
           style={{

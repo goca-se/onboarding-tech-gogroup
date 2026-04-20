@@ -16,6 +16,7 @@ import {
 import "@xyflow/react/dist/style.css";
 import { usePersistedFlow } from "@/hooks/usePersistedFlow";
 import NodeEditorPanel from "@/components/NodeEditorPanel";
+import { useBrand } from "@/context/BrandContext";
 
 /* ─── Node Components ─── */
 function LayerNode({ data }: { data: Record<string, unknown> }) {
@@ -80,7 +81,8 @@ function CDNode({ data }: { data: Record<string, unknown> }) {
 
 const nodeTypes = { layer: LayerNode, exception: ExceptionNode, cd: CDNode };
 
-const initialNodes: Node[] = [
+/* ─── Gobeaute stack data ─── */
+const gbInitialNodes: Node[] = [
   { id: "shopify", type: "layer", position: { x: 0, y: 60 },
     data: { layer: "Storefront", bg: "#3dbfef", textColor: "#fff",
       items: [{ icon: "🛒", name: "Shopify", desc: "Tema Liquid customizado por marca." }] } },
@@ -134,7 +136,7 @@ const mkEdge = (id: string, source: string, target: string, color: string, anima
   type: "smoothstep",
 });
 
-const initialEdges: Edge[] = [
+const gbInitialEdges: Edge[] = [
   mkEdge("s→mw",  "shopify", "mw",  "#3dbfef", true),
   mkEdge("y→mw",  "yampi",   "mw",  "#f8ae13", true),
   mkEdge("mw→p",  "mw", "protheus",   "#2659a5", false, "fiscal"),
@@ -154,7 +156,7 @@ const initialEdges: Edge[] = [
   mkEdge("y→md",  "yampi",   "midia", "#d7d900aa"),
 ];
 
-const layerLegend = [
+const gbLayerLegend = [
   { color: "#3dbfef", label: "Storefront (Shopify)" },
   { color: "#f8ae13", label: "Checkout (Yampi)" },
   { color: "#e5381a", label: "Middleware v2 — hub" },
@@ -164,9 +166,90 @@ const layerLegend = [
   { color: "#d7d900", label: "Mídia ← Shop + Yampi" },
 ];
 
+/* ─── Gocase stack data ─── */
+const gcInitialNodes: Node[] = [
+  { id: "gc-site", type: "layer", position: { x: 0, y: 60 },
+    data: { layer: "Storefront", bg: "#3dbfef", textColor: "#fff",
+      items: [{ icon: "🛍️", name: "Site Gocase", desc: "E-commerce próprio + configurador de produtos." }] } },
+  { id: "gc-custom", type: "layer", position: { x: 0, y: 260 },
+    data: { layer: "Motor de Personalização", bg: "#9B59B6", textColor: "#fff",
+      items: [{ icon: "🎨", name: "Configurador", desc: "Renderização em tempo real: texto, foto, arte." }] } },
+  { id: "gc-checkout", type: "layer", position: { x: 0, y: 460 },
+    data: { layer: "Checkout & Pagamentos", bg: "#f8ae13", textColor: "#1a1a1a",
+      items: [{ icon: "💳", name: "Checkout", desc: "Pagamentos nacionais e +130 países." }] } },
+  { id: "gc-oms", type: "layer", position: { x: 350, y: 220 },
+    data: { layer: "OMS / Middleware", bg: "#E8403A", textColor: "#fff", isHub: true,
+      items: [{ icon: "⚙️", name: "OMS Gocase", desc: "Gestão de pedidos, SKUs customizados e integrações." }] } },
+  { id: "gc-protheus", type: "layer", position: { x: 350, y: 460 },
+    data: { layer: "ERP Fiscal", bg: "#2659a5", textColor: "#fff",
+      items: [{ icon: "📦", name: "Protheus (TOTVS)", desc: "ERP fiscal e financeiro compartilhado com o grupo." }] } },
+  { id: "gc-fabrica", type: "layer", position: { x: 350, y: 640 },
+    data: { layer: "Produção / WMS", bg: "#1a2340", textColor: "#fff",
+      items: [{ icon: "🏭", name: "CD Extrema/MG", desc: "Fábrica in-house — impressão, montagem e expedição." }] } },
+  { id: "gc-logistica", type: "layer", position: { x: 350, y: 820 },
+    data: { layer: "Logística", bg: "#0e3a4a", textColor: "#fff",
+      items: [{ icon: "🚚", name: "Transportadoras", desc: "Nacionais e internacionais. Rastreio automatizado." }] } },
+  { id: "gc-crm", type: "layer", position: { x: 740, y: 60 },
+    data: { layer: "CRM & Retenção", bg: "#e61782", textColor: "#fff",
+      items: [
+        { icon: "💬", name: "Email & Push", desc: "Jornadas pós-venda e recompra." },
+        { icon: "🔄", name: "Automações", desc: "Workflows e triggers de comportamento." },
+      ] } },
+  { id: "gc-analytics", type: "layer", position: { x: 740, y: 340 },
+    data: { layer: "Analytics / BI", bg: "#7B4F8C", textColor: "#fff",
+      items: [
+        { icon: "📊", name: "GA4",      desc: "Funil, eventos e LTV." },
+        { icon: "📈", name: "Metabase", desc: "Dashboards via BigQuery." },
+        { icon: "💎", name: "Personaliz.", desc: "Métricas de customização." },
+      ] } },
+  { id: "gc-midia", type: "layer", position: { x: 740, y: 650 },
+    data: { layer: "Mídia & Performance", bg: "#d7d900", textColor: "#2659a5",
+      items: [
+        { icon: "🔵", name: "Meta Ads",     desc: "Aquisição nacional e global." },
+        { icon: "🟡", name: "Google Ads",   desc: "Search, Shopping e YouTube." },
+        { icon: "⚫", name: "TikTok Ads",   desc: "Aquisição geração Z." },
+      ] } },
+];
+
+const gcInitialEdges: Edge[] = [
+  mkEdge("gs→oms",  "gc-site",     "gc-oms",       "#3dbfef",   true),
+  mkEdge("gcu→oms", "gc-custom",   "gc-oms",       "#9B59B6",   true),
+  mkEdge("gco→oms", "gc-checkout", "gc-oms",       "#f8ae13",   true),
+  mkEdge("oms→p",   "gc-oms",  "gc-protheus",       "#2659a5",  false, "fiscal"),
+  mkEdge("oms→f",   "gc-oms",  "gc-fabrica",        "#3dbfef66",false, "WMS"),
+  mkEdge("f→l",     "gc-fabrica","gc-logistica",    "#3dbfef88"),
+  mkEdge("gs→crm",  "gc-site",     "gc-crm",       "#e61782aa"),
+  mkEdge("oms→crm", "gc-oms",      "gc-crm",       "#e61782",   false, "eventos"),
+  mkEdge("gs→an",   "gc-site",     "gc-analytics", "#7B4F8Caa"),
+  mkEdge("oms→an",  "gc-oms",      "gc-analytics", "#7B4F8C",   false, "dados"),
+  mkEdge("p→an",    "gc-protheus", "gc-analytics", "#7B4F8Caa", false, "ERP"),
+  mkEdge("gs→md",   "gc-site",     "gc-midia",     "#d7d900aa"),
+  mkEdge("gco→md",  "gc-checkout", "gc-midia",     "#d7d900aa"),
+];
+
+const gcLayerLegend = [
+  { color: "#3dbfef", label: "Storefront (Site Gocase)" },
+  { color: "#9B59B6", label: "Motor de Personalização" },
+  { color: "#f8ae13", label: "Checkout & Pagamentos" },
+  { color: "#E8403A", label: "OMS Gocase — hub" },
+  { color: "#2659a5", label: "ERP (Protheus TOTVS)" },
+  { color: "#1a2340", label: "Produção / WMS (Extrema)" },
+  { color: "#e61782", label: "CRM & Retenção" },
+  { color: "#7B4F8C", label: "Analytics / BI" },
+  { color: "#d7d900", label: "Mídia & Performance" },
+];
+
+/* ─── Component ─── */
 export default function Stack() {
+  const { brand } = useBrand();
+
+  const gbFlow = usePersistedFlow("stack-gobeaute", gbInitialNodes, gbInitialEdges);
+  const gcFlow = usePersistedFlow("stack-gocase",   gcInitialNodes, gcInitialEdges);
+
   const { nodes, setNodes, onNodesChange, edges, onEdgesChange, onConnect, resetFlow, ready } =
-    usePersistedFlow("stack", initialNodes, initialEdges);
+    brand === "gocase" ? gcFlow : gbFlow;
+
+  const layerLegend = brand === "gocase" ? gcLayerLegend : gbLayerLegend;
 
   const [editingNode, setEditingNode] = useState<Node | null>(null);
 
@@ -181,16 +264,20 @@ export default function Stack() {
     [setNodes]
   );
 
+  const brandLabel = brand === "gocase" ? "Gocase" : "Gobeaute";
+
   return (
     <section id="stack" style={{ background: "#2659a5", padding: "80px 0 0" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 40px 40px" }}>
         <div className="dots reveal" />
         <span className="pill reveal reveal-delay-1" style={{ marginBottom: 16, display: "inline-block" }}>ARQUITETURA</span>
         <h2 className="reveal reveal-delay-2" style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 800, fontSize: "clamp(28px, 3.5vw, 48px)", color: "#d7d900", margin: "0 0 12px" }}>
-          Nossa Stack Técnica
+          Stack Técnica — {brandLabel}
         </h2>
         <p className="reveal reveal-delay-3" style={{ color: "rgba(255,255,255,0.7)", marginBottom: 8, fontSize: "1rem", maxWidth: 580 }}>
-          Arquitetura multi-marca — do storefront ao ERP. Ops só se conectam ao Middleware.
+          {brand === "gocase"
+            ? "Arquitetura Gocase — do configurador de produtos ao fulfillment em Extrema/MG."
+            : "Arquitetura multi-marca — do storefront ao ERP. Ops só se conectam ao Middleware."}
         </p>
         <p style={{ color: "rgba(215,217,0,0.7)", fontSize: "0.8rem", marginBottom: 0, fontWeight: 600 }}>
           Arraste · Zoom · Pan · Duplo clique para editar · Delete/Backspace para excluir selecionado
@@ -238,7 +325,6 @@ export default function Stack() {
           </button>
         </div>
 
-        {/* Node editor panel */}
         {editingNode && (
           <NodeEditorPanel
             node={editingNode}

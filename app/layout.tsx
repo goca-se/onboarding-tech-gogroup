@@ -3,6 +3,7 @@ import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
 import { EditModeProvider } from "@/context/EditModeContext";
+import { BrandProvider } from "@/context/BrandContext";
 
 export const metadata: Metadata = {
   title: "Gogroup Tech · Onboarding",
@@ -15,7 +16,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang="pt-BR">
       <body suppressHydrationWarning>
         <SessionProvider session={session}>
-          <EditModeProvider>{children}</EditModeProvider>
+          <BrandProvider><EditModeProvider>{children}</EditModeProvider></BrandProvider>
         </SessionProvider>
       </body>
     </html>

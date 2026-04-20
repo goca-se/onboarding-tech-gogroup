@@ -2,9 +2,22 @@
 
 import { useState } from "react";
 
-const LOGO_TOKEN = "pk_CII7EsFARtObSn1pyZlNhg";
+const LOGO_TOKEN = "pk_X7-rxBQBQqmZkZzBIGhP1g";
 
-const marcas = [
+const gocase = {
+  name: "Gocase",
+  domain: "gocase.com.br",
+  accent: "#E8403A",
+  accentLight: "#fdecea",
+  segment: "Acessórios Personalizados",
+  tagline: "O maior e-commerce de acessórios personalizados do Brasil — do case ao mundo.",
+  desc: "Maior e-commerce de acessórios personalizados do Brasil. Opera em +130 países, com sede na Holanda e produção em Extrema (MG). Portfólio: cases para iPhone e Samsung, mochilas, garrafinhas, carteiras e nécessaires — todos customizáveis com nome, foto ou arte de ilustradores parceiros. +2,2M de fãs online e mais de 200 Gocasers.",
+  tags: ["Personalização", "Cases & Tech", "+130 Países", "Love Brand", "D2C"],
+  url: "https://gocase.com.br",
+  initials: "G",
+};
+
+const gobeauteMarcas = [
   {
     name: "Ápice",
     domain: "apicecosmeticos.com.br",
@@ -91,6 +104,46 @@ const marcas = [
   },
 ];
 
+const jumpMarcas = [
+  {
+    name: "We Are Knitters",
+    domain: "weareknitters.com",
+    accent: "#D4507A",
+    accentLight: "#fdedf3",
+    segment: "Tricô & Crochê DIY",
+    tagline: "Tricô moderno para a geração maker. Kits completos, comunidade global.",
+    desc: "Marca espanhola de kits de tricô e crochê para o público moderno. Kits completos com lã 100% natural, agulhas de madeira e padrão digital — do básico ao avançado. Comunidade de +1 milhão de makers desde 2011 com tutoriais em vídeo e feed colaborativo. Destaque em Vogue, Elle e NYT.",
+    tags: ["Tricô & Crochê", "Kits DIY", "Lã Natural", "Comunidade", "Mindful Crafting"],
+    url: "https://weareknitters.com",
+    initials: "WK",
+  },
+  {
+    name: "Life of Colour",
+    domain: "lifeofcolourproducts.com",
+    accent: "#E8973A",
+    accentLight: "#fdf3e7",
+    segment: "Arte & Mindfulness",
+    tagline: "Arte como ferramenta de autoexpressão, presença plena e reconexão.",
+    desc: "Marca australiana de kits de arte experiencial com foco em criatividade e bem-estar. Portfólio: paint by numbers, aquarela, mosaico, mandalas e kits 3D. Proposta: arte como ferramenta de autoexpressão, presença plena e reconexão. Inspirada pela costa australiana, natureza e comunidade.",
+    tags: ["Paint by Numbers", "Aquarela", "Mosaico", "Mindfulness", "Arte em Casa"],
+    url: "https://lifeofcolourproducts.com",
+    initials: "LC",
+  },
+  {
+    name: "Pott'd",
+    domain: "getpottd.com",
+    accent: "#5B8FA8",
+    accentLight: "#eaf3f7",
+    segment: "Cerâmica em Casa",
+    tagline: "Cerâmica air-dry em casa. Sem studio, sem roda, sem forno.",
+    desc: "Kit de cerâmica com argila air-dry para adultos iniciantes — sem studio, sem roda, sem forno. Inclui argila eco-friendly (seca em 24–48h), ferramentas de madeira, tintas acrílicas, verniz e guia passo a passo. Posicionado para date night, presente criativo e desconexão digital via artesanato sensorial.",
+    tags: ["Air-dry Clay", "Cerâmica DIY", "Sem Studio", "Date Night", "Mental Health"],
+    url: "https://getpottd.com",
+    initials: "P",
+  },
+];
+
+/* ── Reusable logo component ── */
 function LogoImg({ domain, initials, accent }: { domain: string; initials: string; accent: string }) {
   const [failed, setFailed] = useState(false);
   const src = `https://img.logo.dev/${domain}?token=${LOGO_TOKEN}&size=128&format=png`;
@@ -121,6 +174,146 @@ function LogoImg({ domain, initials, accent }: { domain: string; initials: strin
   );
 }
 
+/* ── Section divider ── */
+function SectionDivider({ label }: { label: string }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 16, margin: "52px 0 40px" }}>
+      <div style={{ flex: 1, height: 1, background: "#e4e0d8" }} />
+      <span style={{
+        fontFamily: "'DM Sans', sans-serif",
+        fontSize: "11px",
+        color: "#aaa",
+        letterSpacing: "0.08em",
+        textTransform: "uppercase",
+        whiteSpace: "nowrap",
+      }}>
+        {label}
+      </span>
+      <div style={{ flex: 1, height: 1, background: "#e4e0d8" }} />
+    </div>
+  );
+}
+
+/* ── Brand card ── */
+function BrandCard({
+  m,
+  delayClass,
+  featured = false,
+}: {
+  m: typeof gocase;
+  delayClass: string;
+  featured?: boolean;
+}) {
+  return (
+    <a
+      href={m.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`reveal ${delayClass}`}
+      style={{
+        textDecoration: "none",
+        display: "block",
+        background: "#fff",
+        borderRadius: 20,
+        overflow: "hidden",
+        boxShadow: "0 2px 16px rgba(0,0,0,0.08)",
+        borderTop: `5px solid ${m.accent}`,
+        border: featured ? `1.5px solid ${m.accent}20` : undefined,
+        borderTopWidth: "5px",
+        borderTopStyle: "solid",
+        borderTopColor: m.accent,
+        transition: "transform 0.22s ease, box-shadow 0.22s ease",
+        cursor: "pointer",
+        gridColumn: featured ? "1 / -1" : undefined,
+      } as React.CSSProperties}
+      onMouseEnter={(e) => {
+        (e.currentTarget as HTMLElement).style.transform = "translateY(-5px)";
+        (e.currentTarget as HTMLElement).style.boxShadow = `0 16px 40px ${m.accent}28`;
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+        (e.currentTarget as HTMLElement).style.boxShadow = "0 2px 16px rgba(0,0,0,0.08)";
+      }}
+    >
+      <div style={{ padding: "24px 28px 28px" }}>
+        <div style={{ display: "flex", alignItems: "flex-start", gap: 16, marginBottom: 16 }}>
+          <LogoImg domain={m.domain} initials={m.initials} accent={m.accent} />
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+              <h3 style={{
+                fontFamily: "'DM Serif Display', serif",
+                fontWeight: 400,
+                fontSize: "1.3rem",
+                color: "#1a1a1a",
+                margin: 0,
+                lineHeight: 1.2,
+              }}>
+                {m.name}
+              </h3>
+              <span style={{ color: "#bbb", fontSize: "0.8rem", flexShrink: 0 }}>↗</span>
+            </div>
+            <span style={{
+              display: "inline-block",
+              marginTop: 5,
+              fontSize: "0.65rem",
+              fontWeight: 600,
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              color: m.accent,
+              background: m.accentLight,
+              padding: "3px 10px",
+              borderRadius: 999,
+            }}>
+              {m.segment}
+            </span>
+          </div>
+        </div>
+
+        <p style={{
+          fontFamily: "'DM Serif Display', serif",
+          fontStyle: "italic",
+          fontSize: "0.95rem",
+          color: "#333",
+          margin: "0 0 10px",
+          lineHeight: 1.5,
+        }}>
+          &ldquo;{m.tagline}&rdquo;
+        </p>
+
+        <p style={{
+          fontSize: "0.82rem",
+          color: "#666",
+          margin: "0 0 16px",
+          lineHeight: 1.7,
+          fontFamily: "'DM Sans', sans-serif",
+        }}>
+          {m.desc}
+        </p>
+
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+          {m.tags.map(tag => (
+            <span
+              key={tag}
+              style={{
+                fontSize: "0.68rem",
+                fontWeight: 500,
+                color: m.accent,
+                background: m.accentLight,
+                border: `1px solid ${m.accent}30`,
+                borderRadius: 999,
+                padding: "3px 10px",
+                fontFamily: "'DM Sans', sans-serif",
+              }}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </a>
+  );
+}
+
 export default function Marcas() {
   return (
     <section id="marcas" style={{ background: "#f7f5f0", padding: "100px 40px", fontFamily: "'DM Sans', sans-serif" }}>
@@ -129,7 +322,7 @@ export default function Marcas() {
         {/* Header */}
         <div className="dots reveal" />
         <span className="pill reveal reveal-delay-1" style={{ marginBottom: 20, display: "inline-block" }}>
-          PORTFOLIO GOBEAUTE
+          PORTFOLIO GOGROUP
         </span>
 
         <h2
@@ -151,128 +344,34 @@ export default function Marcas() {
           className="reveal reveal-delay-3"
           style={{ color: "#777", fontSize: "1rem", marginBottom: 52, maxWidth: 520, lineHeight: 1.7, fontFamily: "'DM Sans', sans-serif" }}
         >
-          7 marcas DTC de beleza. Cada uma com identidade, posicionamento e base de clientes próprios.
-          Clique para visitar o site.
+          10 marcas em 3 universos — do beauty DTC ao artesanato criativo, passando pelo maior e-commerce de acessórios personalizados do Brasil.
         </p>
 
-        {/* 2-column grid */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(480px, 1fr))",
-            gap: 24,
-          }}
-        >
-          {marcas.map((m, i) => (
-            <a
-              key={m.domain}
-              href={m.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`reveal reveal-delay-${(i % 3) + 1}`}
-              style={{
-                textDecoration: "none",
-                display: "block",
-                background: "#fff",
-                borderRadius: 20,
-                overflow: "hidden",
-                boxShadow: "0 2px 16px rgba(0,0,0,0.08)",
-                borderTop: `5px solid ${m.accent}`,
-                transition: "transform 0.22s ease, box-shadow 0.22s ease",
-                cursor: "pointer",
-              } as React.CSSProperties}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.transform = "translateY(-5px)";
-                (e.currentTarget as HTMLElement).style.boxShadow = `0 16px 40px ${m.accent}28`;
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-                (e.currentTarget as HTMLElement).style.boxShadow = "0 2px 16px rgba(0,0,0,0.08)";
-              }}
-            >
-              <div style={{ padding: "24px 28px 28px" }}>
-                {/* Top row: logo + name + segment */}
-                <div style={{ display: "flex", alignItems: "flex-start", gap: 16, marginBottom: 16 }}>
-                  <LogoImg domain={m.domain} initials={m.initials} accent={m.accent} />
+        {/* ── Gocase featured card ── */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(480px, 1fr))", gap: 24 }}>
+          <BrandCard m={gocase} delayClass="reveal-delay-1" featured />
+        </div>
 
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
-                      <h3 style={{
-                        fontFamily: "'DM Serif Display', serif",
-                        fontWeight: 400,
-                        fontSize: "1.3rem",
-                        color: "#1a1a1a",
-                        margin: 0,
-                        lineHeight: 1.2,
-                      }}>
-                        {m.name}
-                      </h3>
-                      <span style={{ color: "#bbb", fontSize: "0.8rem", flexShrink: 0 }}>↗</span>
-                    </div>
-                    <span style={{
-                      display: "inline-block",
-                      marginTop: 5,
-                      fontSize: "0.65rem",
-                      fontWeight: 600,
-                      letterSpacing: "0.1em",
-                      textTransform: "uppercase",
-                      color: m.accent,
-                      background: m.accentLight,
-                      padding: "3px 10px",
-                      borderRadius: 999,
-                    }}>
-                      {m.segment}
-                    </span>
-                  </div>
-                </div>
+        {/* ── Gobeaute divider ── */}
+        <SectionDivider label="Gobeaute · Beleza & Bem-Estar" />
 
-                {/* Tagline */}
-                <p style={{
-                  fontFamily: "'DM Serif Display', serif",
-                  fontStyle: "italic",
-                  fontSize: "0.95rem",
-                  color: "#333",
-                  margin: "0 0 10px",
-                  lineHeight: 1.5,
-                }}>
-                  &ldquo;{m.tagline}&rdquo;
-                </p>
-
-                {/* Description */}
-                <p style={{
-                  fontSize: "0.82rem",
-                  color: "#666",
-                  margin: "0 0 16px",
-                  lineHeight: 1.7,
-                  fontFamily: "'DM Sans', sans-serif",
-                }}>
-                  {m.desc}
-                </p>
-
-                {/* Tags */}
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                  {m.tags.map(tag => (
-                    <span
-                      key={tag}
-                      style={{
-                        fontSize: "0.68rem",
-                        fontWeight: 500,
-                        color: m.accent,
-                        background: m.accentLight,
-                        border: `1px solid ${m.accent}30`,
-                        borderRadius: 999,
-                        padding: "3px 10px",
-                        fontFamily: "'DM Sans', sans-serif",
-                      }}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </a>
+        {/* ── Gobeaute grid ── */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(480px, 1fr))", gap: 24 }}>
+          {gobeauteMarcas.map((m, i) => (
+            <BrandCard key={m.domain} m={m} delayClass={`reveal-delay-${(i % 3) + 1}`} />
           ))}
         </div>
+
+        {/* ── Jump divider ── */}
+        <SectionDivider label="Jump · Crafts & Criatividade" />
+
+        {/* ── Jump grid 2 colunas ── */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 24 }}>
+          {jumpMarcas.map((m, i) => (
+            <BrandCard key={m.domain} m={m} delayClass={`reveal-delay-${(i % 3) + 1}`} />
+          ))}
+        </div>
+
       </div>
     </section>
   );

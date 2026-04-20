@@ -119,6 +119,8 @@ const GROWTH_COLOR   = "#c0392b";
 const initialNodes: Node[] = [
   { id: "eugene",    type: "head",   position: { x: 430, y: 0 },
     data: { name: "Eughenio Constantino", role: "Head de Tecnologia", dept: "Tech", color: HEAD_COLOR } },
+  { id: "isaac",     type: "person", position: { x: -230, y: 220 },
+    data: { name: "Isaac", role: "Product Manager", dept: "Gocase", color: GOCASE_COLOR } },
   { id: "daniel",    type: "person", position: { x: 0, y: 220 },
     data: { name: "Daniel Damasceno", role: "Tech Lead", dept: "Backoffice Gocase", color: GOCASE_COLOR } },
   { id: "isabella",  type: "person", position: { x: 225, y: 220 },
@@ -165,6 +167,7 @@ const mkE = (id: string, s: string, t: string, color: string, dashed = false, la
 });
 
 const initialEdges: Edge[] = [
+  mkE("e→isa-gc", "eugene", "isaac",    GOCASE_COLOR),
   mkE("e→dan", "eugene", "daniel",     GOCASE_COLOR),
   mkE("e→isa", "eugene", "isabella",   GOCASE_COLOR),
   mkE("e→eri", "eugene", "erik",       INFRA_COLOR),

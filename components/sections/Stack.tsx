@@ -268,8 +268,8 @@ export default function Stack() {
   const brandLabel = brand === "gocase" ? "Gocase" : "Gobeaute";
 
   return (
-    <section id="stack" style={{ background: "#2659a5", padding: "80px 0 0" }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 40px 40px" }}>
+    <section id="stack" style={{ background: "#2659a5", padding: "clamp(40px,7vw,80px) 0 0" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: `0 clamp(16px,4vw,40px) clamp(20px,4vw,40px)` }}>
         <BrandSelector variant="dark" />
         <div className="dots reveal" />
         <span className="pill reveal reveal-delay-1" style={{ marginBottom: 16, display: "inline-block" }}>ARQUITETURA</span>
@@ -286,7 +286,7 @@ export default function Stack() {
         </p>
       </div>
 
-      <div style={{ height: 820, background: "#111827", position: "relative", opacity: ready ? 1 : 0, transition: "opacity 0.15s ease" }}>
+      <div style={{ height: "clamp(520px,80vh,820px)", background: "#111827", position: "relative", opacity: ready ? 1 : 0, transition: "opacity 0.15s ease" }}>
         <ReactFlow
           nodes={nodes}
           edges={edges}

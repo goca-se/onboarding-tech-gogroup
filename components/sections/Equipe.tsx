@@ -210,8 +210,8 @@ export default function Equipe() {
   );
 
   return (
-    <section id="equipe" style={{ background: "#f7f5f0", padding: "80px 0 0" }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 40px 40px" }}>
+    <section id="equipe" style={{ background: "#f7f5f0", padding: "clamp(40px,7vw,80px) 0 0" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: `0 clamp(16px,4vw,40px) clamp(20px,4vw,40px)` }}>
         <div className="dots reveal" />
         <span className="pill reveal reveal-delay-1" style={{ marginBottom: 16, display: "inline-block" }}>EQUIPE</span>
         <h2 className="reveal reveal-delay-2" style={{ fontFamily: "'DM Serif Display', serif", fontWeight: 400, fontSize: "clamp(28px, 3.5vw, 48px)", color: "#1a1a1a", margin: "0 0 12px" }}>
@@ -225,7 +225,7 @@ export default function Equipe() {
         </p>
       </div>
 
-      <div style={{ height: 780, background: "#1a1a2e", position: "relative", opacity: ready ? 1 : 0, transition: "opacity 0.15s ease" }}>
+      <div style={{ height: "clamp(480px,80vh,780px)", background: "#1a1a2e", position: "relative", opacity: ready ? 1 : 0, transition: "opacity 0.15s ease" }}>
         <ReactFlow
           nodes={nodes}
           edges={edges}

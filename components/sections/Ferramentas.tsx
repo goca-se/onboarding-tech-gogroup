@@ -357,7 +357,7 @@ function ToolGrid({ tools, onUpdate, isEditMode, onAdd }: {
   const del  = (i: number)           => { onUpdate(tools.filter((_, idx) => idx !== i)); };
 
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 16 }}>
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(280px,100%), 1fr))", gap: 16 }}>
       {tools.map((tool, i) =>
         isEditMode && editingIndex === i ? (
           <ToolEditor key={i} tool={tool} onSave={(t) => save(i, t)} onCancel={() => setEditingIndex(null)} />
@@ -398,7 +398,7 @@ export default function Ferramentas() {
   const brandAccent = brand === "gocase" ? "#E8403A" : "#2659a5";
 
   return (
-    <section id="ferramentas" style={{ background: "#f0eee9", padding: "100px 40px 80px" }}>
+    <section id="ferramentas" style={{ background: "#f0eee9", padding: "clamp(48px,8vw,100px) clamp(20px,5vw,40px) clamp(40px,7vw,80px)" }}>
       <div style={{ maxWidth: 1140, margin: "0 auto" }}>
 
         {/* Header */}

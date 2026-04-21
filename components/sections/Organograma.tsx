@@ -200,8 +200,8 @@ export default function Organograma() {
   const brandLabel = brand === "gocase" ? "Gocase" : "Gobeaute";
 
   return (
-    <section id="organograma" style={{ background: "#f5f0e8", padding: "80px 0 0" }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 40px 40px" }}>
+    <section id="organograma" style={{ background: "#f5f0e8", padding: "clamp(40px,7vw,80px) 0 0" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: `0 clamp(16px,4vw,40px) clamp(20px,4vw,40px)` }}>
         <BrandSelector variant="light" />
         <div className="dots reveal" />
         <span className="pill reveal reveal-delay-1" style={{ marginBottom: 16, display: "inline-block" }}>ORGANOGRAMA</span>
@@ -216,7 +216,7 @@ export default function Organograma() {
         </p>
       </div>
 
-      <div style={{ height: 700, background: "#1a2340", position: "relative", opacity: ready ? 1 : 0, transition: "opacity 0.15s ease" }}>
+      <div style={{ height: "clamp(460px,80vh,700px)", background: "#1a2340", position: "relative", opacity: ready ? 1 : 0, transition: "opacity 0.15s ease" }}>
         <ReactFlow
           nodes={nodes}
           edges={edges}

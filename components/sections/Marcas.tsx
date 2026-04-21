@@ -315,7 +315,7 @@ function BrandCard({
 
 export default function Marcas() {
   return (
-    <section id="marcas" style={{ background: "#f7f5f0", padding: "100px 40px", fontFamily: "'DM Sans', sans-serif" }}>
+    <section id="marcas" style={{ background: "#f7f5f0", padding: "clamp(48px,8vw,100px) clamp(20px,5vw,40px)", fontFamily: "'DM Sans', sans-serif" }}>
       <div style={{ maxWidth: 1140, margin: "0 auto" }}>
 
         {/* Header */}
@@ -347,7 +347,7 @@ export default function Marcas() {
         </p>
 
         {/* ── Gocase featured card ── */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(480px, 1fr))", gap: 24 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(400px,100%), 1fr))", gap: 24 }}>
           <BrandCard m={gocase} delayClass="reveal-delay-1" featured />
         </div>
 
@@ -355,7 +355,7 @@ export default function Marcas() {
         <SectionDivider label="Gobeaute · Beleza & Bem-Estar" />
 
         {/* ── Gobeaute grid ── */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(480px, 1fr))", gap: 24 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(400px,100%), 1fr))", gap: 24 }}>
           {gobeauteMarcas.map((m, i) => (
             <BrandCard key={m.domain} m={m} delayClass={`reveal-delay-${(i % 3) + 1}`} />
           ))}
@@ -365,7 +365,7 @@ export default function Marcas() {
         <SectionDivider label="Jump · Crafts & Criatividade" />
 
         {/* ── Jump grid 2 colunas ── */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 24 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(280px,100%), 1fr))", gap: 24 }}>
           {jumpMarcas.map((m, i) => (
             <BrandCard key={m.domain} m={m} delayClass={`reveal-delay-${(i % 3) + 1}`} />
           ))}

@@ -22,7 +22,7 @@ export default function Hero() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          padding: "60px 40px",
+          padding: "clamp(32px,6vw,60px) clamp(20px,5vw,40px)",
           position: "relative",
           textAlign: "center",
         }}

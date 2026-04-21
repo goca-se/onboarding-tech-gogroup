@@ -32,7 +32,7 @@ function BrowserCard({ children, dots }: { children: React.ReactNode; dots: stri
 
 export default function Universos() {
   return (
-    <section id="universos" style={{ background: "#2659a5", padding: "100px 40px" }}>
+    <section id="universos" style={{ background: "#2659a5", padding: "clamp(48px,8vw,100px) clamp(20px,5vw,40px)" }}>
       <div style={{ maxWidth: 1300, margin: "0 auto" }}>
         {/* Header */}
         <div className="dots reveal" />
@@ -54,7 +54,7 @@ export default function Universos() {
             <div style={{ flex: 1, height: 1, background: "rgba(215,217,0,0.3)" }} />
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(260px,100%), 1fr))", gap: 16 }}>
             {/* Squad Gobeaute */}
             <div style={{ background: "rgba(230,23,130,0.22)", border: "2px solid rgba(230,23,130,0.7)", borderRadius: 20, padding: "20px 24px" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
@@ -84,7 +84,7 @@ export default function Universos() {
         </div>
 
         {/* Cards grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: 24, alignItems: "start" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(280px,100%), 1fr))", gap: 24, alignItems: "start" }}>
 
           {/* ─── GOCASE ─── */}
           <div className="reveal reveal-delay-1">

@@ -106,7 +106,7 @@ export default function Valores() {
   const updateValue  = (i: number, v: Value)  => { setValues(values.map((x, idx) => idx === i ? v : x));   setEditingValue(null);  };
 
   return (
-    <section id="valores" style={{ background: "#f5f0e8", padding: "100px 40px", position: "relative", overflow: "hidden" }}>
+    <section id="valores" style={{ background: "#f5f0e8", padding: "clamp(48px,8vw,100px) clamp(20px,5vw,40px)", position: "relative", overflow: "hidden" }}>
 
       {/* Decorative stickers — background accents */}
       {decorativeStickers.map((s, i) => (
@@ -144,7 +144,7 @@ export default function Valores() {
         {/* Quote card */}
         <div
           className="reveal reveal-delay-2"
-          style={{ background: "#2659a5", borderRadius: 24, padding: "40px 48px", marginBottom: 48, position: "relative", overflow: "hidden" }}
+          style={{ background: "#2659a5", borderRadius: 24, padding: "clamp(24px,5vw,40px) clamp(24px,6vw,48px)", marginBottom: 48, position: "relative", overflow: "hidden" }}
         >
           <div style={{ position: "absolute", top: -20, right: -20, width: 160, height: 160, background: "rgba(215,217,0,0.08)", borderRadius: "50%" }} />
           <div style={{ position: "absolute", bottom: -40, left: -10, width: 120, height: 120, background: "rgba(255,255,255,0.04)", borderRadius: "50%" }} />
@@ -158,7 +158,7 @@ export default function Valores() {
         </div>
 
         {/* Three pillars */}
-        <div className="reveal reveal-delay-3" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 20, marginBottom: 72 }}>
+        <div className="reveal reveal-delay-3" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(240px,100%), 1fr))", gap: 20, marginBottom: 72 }}>
           {pillars.map((p, i) =>
             isEditMode && editingPillar === i ? (
               <PillarEditor key={i} pillar={p} onSave={(v) => updatePillar(i, v)} onCancel={() => setEditingPillar(null)} />
@@ -189,7 +189,7 @@ export default function Valores() {
         </h2>
 
         {/* Values grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 20 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(200px,100%), 1fr))", gap: 20 }}>
           {values.map((v, i) =>
             isEditMode && editingValue === i ? (
               <ValueEditor key={i} value={v} onSave={(val) => updateValue(i, val)} onCancel={() => setEditingValue(null)} />

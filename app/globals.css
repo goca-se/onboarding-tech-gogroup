@@ -180,3 +180,32 @@ body {
 /* ── Dashed border ── */
 .dashed { border: 2px dashed rgba(255,255,255,0.35); }
 .dashed-dark { border: 2px dashed rgba(38,89,165,0.3); }
+
+/* ── Mobile responsive ── */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 16px;
+    height: 56px;
+  }
+  .nav-links {
+    gap: 2px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-right: 8px;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a {
+    padding: 4px 8px;
+    font-size: 0.6rem;
+    white-space: nowrap;
+  }
+  .hero-frame {
+    border-width: 6px;
+    margin: 8px;
+    border-radius: 20px;
+  }
+  .layer-card {
+    padding: 18px 18px;
+  }
+}

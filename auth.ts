@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 
-const ALLOWED_DOMAINS = ["gocase.com", "gobeaute.com", "gogroup.com", "jumpventures.com"];
+const ALLOWED_DOMAINS = ["gocase.com", "gobeaute.com", "gobeaute.com.br", "gogroup.com", "jumpventures.com"];
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [Google],

@@ -21,6 +21,26 @@ const defaultValues: Value[] = [
   { title: "Amor pelo Cliente",  mantra: "Ouça, resolva, surpreenda.",               desc: "O cliente é nosso chefe. Nossa obsessão é encantar — não apenas resolver.",                                          bg: "#e5273c", textColor: "#fff" },
 ];
 
+// Sticker matched to each value by order
+const valueStickers = [
+  "/stickers/mente_aberta.png",
+  "/stickers/ponta_firme.png",
+  "/stickers/transparencia_maxima.png",
+  "/stickers/time_campeao.png",
+  "/stickers/amor_pelo_cliente.png",
+];
+
+const valueRotations = [-4, 3, -3, 4, -2];
+
+// Decorative stickers — scattered around the section edges
+const decorativeStickers: Array<{ src: string; style: React.CSSProperties }> = [
+  { src: "/stickers/vamo_pra_cima.png",           style: { top: "3%",   right: "-2%",  transform: "rotate(14deg)",  width: 130, height: 130 } },
+  { src: "/stickers/o_jeito_gogroup.png",          style: { bottom: "4%", left: "-2%",  transform: "rotate(-11deg)", width: 118, height: 118 } },
+  { src: "/stickers/motorista_nao_passageiro.png", style: { top: "27%",  right: "0%",   transform: "rotate(7deg)",   width: 88,  height: 88  } },
+  { src: "/stickers/nao_aceitar_o_ok.png",         style: { top: "54%",  left: "0.5%",  transform: "rotate(-6deg)",  width: 82,  height: 82  } },
+  { src: "/stickers/e_hit.png",                    style: { bottom: "18%", right: "-1%", transform: "rotate(10deg)", width: 92,  height: 92  } },
+];
+
 const inputStyle: React.CSSProperties = {
   width: "100%",
   padding: "7px 10px",
@@ -86,8 +106,27 @@ export default function Valores() {
   const updateValue  = (i: number, v: Value)  => { setValues(values.map((x, idx) => idx === i ? v : x));   setEditingValue(null);  };
 
   return (
-    <section id="valores" style={{ background: "#f5f0e8", padding: "100px 40px" }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+    <section id="valores" style={{ background: "#f5f0e8", padding: "100px 40px", position: "relative", overflow: "hidden" }}>
+
+      {/* Decorative stickers — background accents */}
+      {decorativeStickers.map((s, i) => (
+        <img
+          key={i}
+          src={s.src}
+          alt=""
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            objectFit: "contain",
+            opacity: 0.2,
+            pointerEvents: "none",
+            userSelect: "none",
+            ...s.style,
+          }}
+        />
+      ))}
+
+      <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative" }}>
 
         <div className="dots reveal" style={{ marginBottom: 8 }} />
         <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 32, flexWrap: "wrap" }}>
@@ -158,7 +197,7 @@ export default function Valores() {
               <div
                 key={i}
                 className={`card-hover reveal reveal-delay-${i + 1}`}
-                style={{ background: v.bg, borderRadius: 24, padding: "36px 28px", boxShadow: "0 4px 24px rgba(0,0,0,0.1)", position: "relative", overflow: "hidden" }}
+                style={{ background: v.bg, borderRadius: 24, padding: "32px 28px 36px", boxShadow: "0 4px 24px rgba(0,0,0,0.1)", position: "relative", overflow: "hidden" }}
               >
                 <div style={{ position: "absolute", bottom: -30, right: -30, width: 100, height: 100, background: "rgba(0,0,0,0.07)", borderRadius: "50%" }} />
                 {isEditMode && (
@@ -169,6 +208,23 @@ export default function Valores() {
                     ✏
                   </button>
                 )}
+
+                {/* Value sticker */}
+                <img
+                  src={valueStickers[i]}
+                  alt={v.title}
+                  style={{
+                    width: 86,
+                    height: 86,
+                    objectFit: "contain",
+                    display: "block",
+                    marginBottom: 20,
+                    transform: `rotate(${valueRotations[i]}deg)`,
+                    filter: "drop-shadow(0 6px 14px rgba(0,0,0,0.25))",
+                    position: "relative",
+                  }}
+                />
+
                 <h3 style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 800, fontSize: "clamp(18px, 2vw, 24px)", color: v.textColor, margin: "0 0 8px", lineHeight: 1.2, position: "relative" }}>
                   {v.title}
                 </h3>

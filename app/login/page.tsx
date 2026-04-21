@@ -141,7 +141,7 @@ export default async function LoginPage({ searchParams }: Props) {
             }}
           >
             Acesso negado. Use um e-mail{" "}
-            <strong>@gocase.com, @gobeaute.com, @gogroup.com</strong> ou{" "}
+            <strong>@gocase.com, @gobeaute.com, @gobeaute.com.br, @gogroup.com</strong> ou{" "}
             <strong>@jumpventures.com</strong>.
           </div>
         )}
@@ -166,7 +166,7 @@ export default async function LoginPage({ searchParams }: Props) {
             lineHeight: 1.6,
           }}
         >
-          Domínios permitidos: gocase.com · gobeaute.com
+          Domínios permitidos: gocase.com · gobeaute.com · gobeaute.com.br
           <br />
           gogroup.com · jumpventures.com
         </p>

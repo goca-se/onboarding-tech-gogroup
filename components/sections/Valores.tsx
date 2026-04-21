@@ -24,9 +24,9 @@ const defaultValues: Value[] = [
 // Sticker matched to each value by order
 const valueStickers = [
   "/stickers/mente_aberta.png",
-  "/stickers/ponta_firme.png",
-  "/stickers/transparencia_maxima.png",
   "/stickers/time_campeao.png",
+  "/stickers/transparencia_maxima.png",
+  "/stickers/ponta_firme.png",
   "/stickers/amor_pelo_cliente.png",
 ];
 

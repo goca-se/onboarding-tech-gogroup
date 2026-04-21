@@ -246,14 +246,16 @@ function ToolLogo({ logoDomain, initials, color }: { logoDomain: string | null; 
     return (
       <div
         style={{
-          width: 44, height: 44, borderRadius: 10, background: color,
+          width: 44, height: 44, borderRadius: 10,
+          background: `${color}18`,
+          border: `1.5px solid ${color}45`,
           display: "flex", alignItems: "center", justifyContent: "center",
-          fontFamily: "'DM Sans', sans-serif", fontWeight: 700, color: "#fff",
-          fontSize: initials.length > 2 ? "0.7rem" : initials.length === 2 ? "0.88rem" : "1.1rem",
+          fontFamily: "'DM Sans', sans-serif", fontWeight: 800, color,
+          fontSize: "1.18rem",
           flexShrink: 0, letterSpacing: "-0.02em",
         }}
       >
-        {initials}
+        {initials.charAt(0)}
       </div>
     );
   }
